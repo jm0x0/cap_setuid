@@ -1,1 +1,1 @@
-os.execute("/bin/bash");
+os.execute("/bin/sh");
