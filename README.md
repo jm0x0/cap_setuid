@@ -23,5 +23,6 @@ This will give us an hexadecimal (base 16) output, that for most people it will 
 
 # CAP_SETUID
 CAP_SETUID allows us to make arbitrary manipulations of process UIDs and forge UID when passing socket credentials via UNIX domain sockets, this is useful because it allows you to give root user permissions to all users running the specific process or executable file.  
-Like everything, it also has its downside, a low privileged can escalate his own permissions up to root (UID 0), an example of this would be, giving python the CAP_SETUID capability and the attacker running `python -c 'import os; os.setuid(0); os.system("/bin/bash")`.  
+Like everything, it also has its downside, a low privileged can escalate his own permissions up to root (UID 0).  
+An example of this would be, giving python the CAP_SETUID capability and the attacker running `python -c 'import os; os.setuid(0); os.system("/bin/bash")`.  
 This will set your processes current UID as root (0) and spawn a shell with elevated privileges, if this type of access is unauthorised, this can be a very big problem.
