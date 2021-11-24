@@ -4,5 +4,5 @@
 
 int main() {
   setuid(0);
-  system("/bin/bash");
+  system("/bin/sh");
 }
