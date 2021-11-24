@@ -1,5 +1,5 @@
 # What are Linux Capabilities?
-Linux capabilities are special attributes in the Linux kernel that grant processes and binary executables specific privileges that are normally reserved for processes whose effective user ID is 0 (The root user, and only the root user, has UID 0).  
+Linux capabilities are special attributes in the Linux kernel that grant processes and binary executables specific privileges that are normally reserved for processes whose effective user ID is 0 (root user).  
 
 Essentially, the goal of capabilities is to divide the power of 'root' into specific privileges, so that if a process or binary that has one or more capabilities is exploited, the potential damage is limited when compared to the same process running as root.
 
@@ -23,6 +23,8 @@ This will give us an hexadecimal (base 16) output, that for most people it will 
 
 # CAP_SETUID
 CAP_SETUID allows us to make arbitrary manipulations of process UIDs and forge UID when passing socket credentials via UNIX domain sockets, this is useful because it allows you to give root user permissions to all users running the specific process or executable file.  
-Like everything, it also has its downside, a low privileged can escalate his own permissions up to root (UID 0).  
-An example of this would be, giving python the CAP_SETUID capability and the attacker running `python -c 'import os; os.setuid(0); os.system("/bin/bash")`.  
+Like everything, it also has its downside, a low privileged can escalate his own permissions up to root (UID 0), an example of this would be, giving python the CAP_SETUID capability and the attacker running:  
+
+<pre>python -c 'import os; os.setuid(0); os.system("/bin/bash")</pre>
+
 This will set your processes current UID as root (0) and spawn a shell with elevated privileges, if this type of access is unauthorised, this can be a very big problem.
